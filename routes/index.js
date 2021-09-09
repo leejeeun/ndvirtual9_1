@@ -38,11 +38,12 @@ router.get("/send", function (req, res, next) {
 })
 
 router.post("/send", upload.single("ef"), function (req, res, next) {
+    let sender = "adm@narangmarketing.com"
     let from = "nd10@narangdesign.com"
     let title = req.body.title
     // let today = "first"
     let html = req.body.html
-    let mailno = new Date()
+    let mailno = sender + "_" + Date().now
 
     // dir = "E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx"
     dir = __dirname + "/uploads/" + req.file.originalname
