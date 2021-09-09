@@ -51,9 +51,10 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     //         mailList += rows[i][1] + ","
     //     }
     // })
-    let from = req.body.from
+    // let from = req.body.from
+    let from = "nd10@narangdesign.com"
     let title = req.body.title
-    let today = new Date()
+    let today = "first"
     mailList.push("yoloyolotangzinzam@gmail.com")
     // mailList.push("nd9@narangdesign.com")
     // mailList.push("tra_sh@naver.com")
