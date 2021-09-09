@@ -17,8 +17,10 @@ const connection = mysql.createConnection(
 
 router.get("/", function (req, res, next) {
     // let addr = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-    let ip = requestIp.getClientIp(req)
-    let sql = "insert into open (ip) values('" + ip + "');"
+    // let ip = requestIp.getClientIp(req)
+    let mailno = req.query.mailno
+    let email = req.query.email
+    let sql = "insert into open (ip) values('" + email + "');"
     connection.query(sql, function(err, rst, flds){
         if(err){
             console.log("ERR : " + err)

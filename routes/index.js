@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 // const upload = multer({dest: "upload/"})
 // const upload = multer({dest: ""})
-const mailList = []
+// const mailList = []
 
 let transporter = nodemailer.createTransport({
     // host: "localhost",
@@ -29,6 +29,8 @@ let transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 })
+
+let mailList = []
 
 router.get('/', function (req, res, next) {
     res.render('main', {title: 'Express'});
@@ -41,7 +43,7 @@ router.get("/send",  function (req, res, next) {
 
 // router.post("/send", upload.single("ef"), function (req, res, next) {
 router.post("/send", upload.single("ef"), function (req, res, next) {
-    let mailList = ""
+    // let mailList = ""
     // console.log(req.file.originalname)
     // console.log("dirname : " + __dirname)
     // xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
@@ -53,25 +55,36 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     // let title = req.body.title
     // let html = req.body.html
     // console.log("mailList : " + mailList)
-    let message = {
-        from: "nd10@narangdesign.com",
-        // to: mailList,
-        to: "yoloyolotangzinzam@gmail.com,nd9@narangdesign.com,tra_sh@naver.com,batch402@daum.net",
-        cc: "",
-        subject: "NARANG TEST",
-        text: "",
-        html: "<p>[TEST] please confirm your email</p>" +
-            "<img src = 'http://www.narangmarketing.com/check' width='1' height='0'>"
-    }
-    transporter.sendMail(message, function (err, info) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("================================================")
-            console.log(info)
-            console.log("================================================")
+    mailList.push("yoloyolotangzinzam@gmail.com")
+    mailList.push("nd9@narangdesign.com")
+    mailList.push("tra_sh@naver.com")
+    mailList.push("batch402@daum.net")
+    let mailno = 1
+    for (let i = 0; i < mailList.length; i++){
+        let message = {
+            from: "nd10@narangdesign.com",
+            to: mailList[i],
+            cc: "",
+            subject: "NARANG TEST",
+            text: "",
+            html: "<p>[TEST] please confirm your email</p>" +
+                "<img src = 'http://www.narangmarketing.com/check?mailno=" +
+                mailno +
+                "&email='" +
+                mailList[i] +
+                " width='1' height='0'>"
         }
-    })
+        transporter.sendMail(message, function (err, info) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log("================================================")
+                console.log(info)
+                console.log("================================================")
+            }
+        })
+    }
+
     res.render("send")
 })
 
