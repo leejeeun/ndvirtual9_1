@@ -33,58 +33,60 @@ router.get('/', function (req, res, next) {
     res.render('main', {title: 'Express'});
 });
 
-router.get("/send",  function (req, res, next) {
+router.get("/send", function (req, res, next) {
     res.render("index")
 })
 
 router.post("/send", upload.single("ef"), function (req, res, next) {
-    let mailList = []
     let from = "nd10@narangdesign.com"
     let title = req.body.title
     let today = "first"
     let html = req.body.html
     let mailno = 1
 
-    console.log(__dirname + "/uploads/" + req.file.originalname)
-    // xlsx("E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx").then((rows) => {
-    xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
-        for(let i in rows){
-            console.log("row : " + rows[i][0])
-            mailList.push(rows[i][0])
-        }
-    })
-    for (let i = 0; i < mailList.length; i++){
-        console.log("mailList : " + mailList)
-        let message = {
-            from: from,
-            to: mailList[i],
-            cc: "",
-            subject: title,
-            text: "",
-            html: html +
-                "<img src = \'https://www.narangmarketing.com/check?mailno=" +
-                today +
-                "&email=" +
-                mailList[i] +
-                "&count=" +
-                mailList.length +
-                "&title=" +
-                title +
-                "\' width='1' height='0'>"
-        }
+    // dir = "E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx"
+    dir = __dirname + "/uploads/" + req.file.originalname
+    console.log("DIR : " + dir)
+    excelParse(dir)
 
-        transporter.sendMail(message, function (err, info) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log("================================================")
-                console.log(info)
-                console.log("================================================")
+    function excelParse(dir) {
+        xlsx(dir).then((rows) => {
+            for (let i in rows) {
+                console.log("row : " + rows[i][0])
+                let message = {
+                    from: from,
+                    to: rows[i][0],
+                    cc: "",
+                    subject: title,
+                    text: "",
+                    html: html +
+                        "<img src = \'https://www.narangmarketing.com/check?mailno=" +
+                        today +
+                        "&email=" +
+                        rows[i][0] +
+                        "&count=" +
+                        rows +
+                        "&title=" +
+                        title +
+                        "\' width='1' height='0'>"
+                }
+
+                transporter.sendMail(message, function (err, info) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log("================================================")
+                        console.log(info)
+                        console.log("================================================")
+                    }
+                })
             }
         })
     }
-
     res.render("send")
 })
+
+
+
 
 module.exports = router;
