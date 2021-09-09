@@ -51,29 +51,32 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     //         mailList += rows[i][1] + ","
     //     }
     // })
-    // let from = req.body.from
-    // let title = req.body.title
-    // let html = req.body.html
-    // console.log("mailList : " + mailList)
+    let from = req.body.from
+    let title = req.body.title
+    let today = new Date()
     mailList.push("yoloyolotangzinzam@gmail.com")
-    mailList.push("nd9@narangdesign.com")
-    mailList.push("tra_sh@naver.com")
-    mailList.push("batch402@hanmail.net")
-    mailList.push("nd6@narangdesign.com")
-    mailList.push("nd8@narangdesign.com")
+    // mailList.push("nd9@narangdesign.com")
+    // mailList.push("tra_sh@naver.com")
+    // mailList.push("batch402@hanmail.net")
+    // mailList.push("nd6@narangdesign.com")
+    // mailList.push("nd8@narangdesign.com")
     let mailno = 1
     for (let i = 0; i < mailList.length; i++){
         let message = {
-            from: "nd10@narangdesign.com",
+            from: from,
             to: mailList[i],
             cc: "",
-            subject: "NARANG TEST 3",
+            subject: title,
             text: "",
             html: "<p>[TEST] please confirm your email</p>" +
                 "<img src = \'https://www.narangmarketing.com/check?mailno=" +
-                mailno +
+                today +
                 "&email=" +
                 mailList[i] +
+                "&count=" +
+                mailList.length +
+                "&title=" +
+                title +
                 "\' width='1' height='0'>"
         }
         transporter.sendMail(message, function (err, info) {
