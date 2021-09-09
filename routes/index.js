@@ -40,7 +40,8 @@ router.get("/send", function (req, res, next) {
 router.post("/send", upload.single("ef"), function (req, res, next) {
     let sender = "adm@narangmarketing.com"
     // let from = "nd10@narangdesign.com"
-    let from = '"' + req.body.sender + '" <nd10@narangdesign.com>'
+    // let from = '"' + req.body.sender + '" <nd10@narangdesign.com>'
+    let from = '"' + req.body.sender + '" domain:root@narangmarketing.com'
     let title = req.body.title
     // let today = "first"
     let html = req.body.html
