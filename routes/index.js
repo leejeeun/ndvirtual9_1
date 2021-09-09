@@ -55,6 +55,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let from = "nd10@narangdesign.com"
     let title = req.body.title
     let today = "first"
+    let html = req.body.html
     mailList.push("yoloyolotangzinzam@gmail.com")
     // mailList.push("nd9@narangdesign.com")
     // mailList.push("tra_sh@naver.com")
@@ -69,7 +70,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
             cc: "",
             subject: title,
             text: "",
-            html: "<p>[TEST] please confirm your email</p>" +
+            html: html +
                 "<img src = \'https://www.narangmarketing.com/check?mailno=" +
                 today +
                 "&email=" +
