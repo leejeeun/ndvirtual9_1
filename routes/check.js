@@ -20,6 +20,7 @@ router.get("/", function (req, res, next) {
     // let ip = requestIp.getClientIp(req)
     let mailno = req.query.mailno
     let email = req.query.email
+    console.log("email" + email)
     let sql = "insert into open (ip) values('" + email + "');"
     connection.query(sql, function(err, rst, flds){
         if(err){
