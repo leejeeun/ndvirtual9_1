@@ -46,10 +46,10 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let mailno = 1
 
     console.log(__dirname + "/uploads/" + req.file.originalname)
-    // xlsx("E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx\n").then((rows) => {
+    // xlsx("E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx").then((rows) => {
     xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
         for(let i in rows){
-            console.log("row : " + rows[i][1])
+            console.log("row : " + rows[i][0])
             mailList.push(rows[i][1])
         }
     })
