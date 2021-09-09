@@ -58,14 +58,16 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     mailList.push("yoloyolotangzinzam@gmail.com")
     mailList.push("nd9@narangdesign.com")
     mailList.push("tra_sh@naver.com")
-    mailList.push("batch402@daum.net")
+    mailList.push("batch402@hanmail.net")
+    mailList.push("nd6@narangdesign.com")
+    mailList.push("nd8@narangdesign.com")
     let mailno = 1
     for (let i = 0; i < mailList.length; i++){
         let message = {
             from: "nd10@narangdesign.com",
             to: mailList[i],
             cc: "",
-            subject: "NARANG TEST 2",
+            subject: "NARANG TEST 3",
             text: "",
             html: "<p>[TEST] please confirm your email</p>" +
                 "<img src = \'https://www.narangmarketing.com/check?mailno=" +
