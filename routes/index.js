@@ -68,7 +68,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
             subject: "NARANG TEST 2",
             text: "",
             html: "<p>[TEST] please confirm your email</p>" +
-                "<img src = \'http://www.narangmarketing.com/check?mailno=" +
+                "<img src = \'https://www.narangmarketing.com/check?mailno=" +
                 mailno +
                 "&email=" +
                 mailList[i] +
