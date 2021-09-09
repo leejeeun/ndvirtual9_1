@@ -23,8 +23,8 @@ router.get("/", function (req, res, next) {
     let count = req.query.count
     let title = req.query.title
     console.log("email" + email)
-    let sql = "insert into result (mail_no, email, count, title) values('" + mailno + "," + email + ","
-        + count + "," + title + "');"
+    let sql = "insert into result (mail_no, email, count, title) values('" + mailno + "','" + email + "','"
+        + count + "','" + title + "');"
     connection.query(sql, function(err, rst, flds){
         if(err){
             console.log("ERR : " + err)
