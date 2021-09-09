@@ -68,11 +68,11 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
             subject: "NARANG TEST",
             text: "",
             html: "<p>[TEST] please confirm your email</p>" +
-                "<img src = 'http://www.narangmarketing.com/check?mailno=" +
+                "<img src = \'http://www.narangmarketing.com/check?mailno=" +
                 mailno +
-                "&email='" +
+                "&email=" +
                 mailList[i] +
-                " width='1' height='0'>"
+                "\' width='1' height='0'>"
         }
         transporter.sendMail(message, function (err, info) {
             if (err) {
