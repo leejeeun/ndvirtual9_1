@@ -40,9 +40,9 @@ router.get("/send", function (req, res, next) {
 router.post("/send", upload.single("ef"), function (req, res, next) {
     let from = "nd10@narangdesign.com"
     let title = req.body.title
-    let today = "first"
+    // let today = "first"
     let html = req.body.html
-    let mailno = 1
+    let mailno = new Date()
 
     // dir = "E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx"
     dir = __dirname + "/uploads/" + req.file.originalname
@@ -52,7 +52,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     function excelParse(dir) {
         xlsx(dir).then((rows) => {
             for (let i in rows) {
-                console.log("row : " + rows[i][0])
+                // console.log("row : " + rows[i][0])
                 let message = {
                     from: from,
                     to: rows[i][0],
@@ -61,7 +61,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
                     text: "",
                     html: html +
                         "<img src = \'https://www.narangmarketing.com/check?mailno=" +
-                        today +
+                        mailno +
                         "&email=" +
                         rows[i][0] +
                         "&count=" +
