@@ -65,7 +65,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
                         "&email=" +
                         rows[i][0] +
                         "&count=" +
-                        rows +
+                        rows.length +
                         "&title=" +
                         title +
                         "\' width='1' height='0'>"
