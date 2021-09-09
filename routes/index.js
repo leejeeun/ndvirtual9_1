@@ -6,13 +6,17 @@ const nodemailer = require("nodemailer")
 const multer = require("multer")
 const xlsx = require("read-excel-file/node")
 const fs = require("fs")
+const path = require("path")
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./routes/uploads/")
+    destination: (req, file, done) => {
+        done(null, "routes/uploads/");
     },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname)
-    }
+    //지정
+    // convert a file name
+    filename: (req, file, done) => {
+        const ext = path.extname(file.originalname);
+        done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
 })
 const upload = multer({storage: storage})
 
@@ -40,6 +44,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let today = "first"
     let html = req.body.html
     let mailno = 1
+
     console.log(__dirname + "/uploads/" + req.file.originalname)
     xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
         for(let i in rows){
