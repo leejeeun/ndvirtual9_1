@@ -50,10 +50,9 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
         for(let i in rows){
             console.log("row : " + rows[i][0])
-            mailList.push(rows[i][1])
+            mailList.push(rows[i][0])
         }
     })
-
     for (let i = 0; i < mailList.length; i++){
         console.log("mailList : " + mailList)
         let message = {
