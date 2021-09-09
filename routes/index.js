@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     // convert a file name
     filename: (req, file, done) => {
         const ext = path.extname(file.originalname);
-        done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+        done(null, path.basename(file.originalname, ext) + ext);
     },
 })
 const upload = multer({storage: storage})
@@ -46,6 +46,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let mailno = 1
 
     console.log(__dirname + "/uploads/" + req.file.originalname)
+    // xlsx("E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx\n").then((rows) => {
     xlsx(__dirname + "/uploads/" + req.file.originalname).then((rows) => {
         for(let i in rows){
             console.log("row : " + rows[i][1])
