@@ -1,0 +1,38 @@
+<html>
+
+<head></head>
+
+<body>
+<h1>발송 결과</h1>
+<table border="1">
+    <tr>
+        <th>메일 일련번호</th>
+        <th>메일 제목</th>
+        <th>발송수</th>
+        <th>확인수</th>
+        <th>확인률</th>
+    </tr>
+    <%
+    for(let i = 0; i < data.length; i++){
+        let row = data[i]
+    %>
+    <tr>
+        <td><%= row.mailno%></td>
+        <td><%= row.title%></td>
+        <td><%= row.count%></td>
+        <td><%= row.recieved%></td>
+        <td><%= row.percent%></td>
+    </tr>
+    <%
+    }
+    %>
+</table>
+<br>
+<form action = "/" method="get">
+    <input type="submit" value = "메인페이지로">
+</form>
+<form action="/send" method="get">
+    <input type = "submit" value = "메일 발송 페이지로">
+</form>
+</body>
+</html>

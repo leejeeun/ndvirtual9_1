@@ -5,16 +5,18 @@
 <body>
 <form action = "/send" method="post" enctype="multipart/form-data">
     <input type = "file" name = "ef" accept=".xls,.xlsx">
-<!--    <input type = "file" name = "ef" accept="application/vnd.ms-excel">-->
-    <br>
-<!--    <input type = "text" name = "to" placeholder="메일 주소를 입력해 주세요">-->
     <br>
     <input type = "text" name = "title" placeholder="메일 제목을 입력해 주세요">
     <br>
-<!--    <input type = "text" name = "html" placeholder="메일 내용을 입력해 주세요">-->
     <textarea name = "html"></textarea>
     <br>
-    <input type = "submit" value = "전숭">
+    <input type = "submit" value = "전송">
+</form>
+<form action = "/" method="get">
+    <input type="submit" value = "메인페이지로">
+</form>
+<form action = "/result" method="get">
+    <input type="submit" value = "메일 결과 페이지로">
 </form>
 </body>
 </html>

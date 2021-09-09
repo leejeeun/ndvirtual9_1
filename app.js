@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth')
 const checkRouter = require("./routes/check")
+const resultRouter = require("./routes/result")
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/auth", authRouter)
 app.use("/check", checkRouter)
+app.use("/result", resultRouter)
 
 app.use(function(req, res, next) {
   next(createError(404));
