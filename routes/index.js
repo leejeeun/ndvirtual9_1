@@ -56,7 +56,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let message = {
         from: "nd10@narangdesign.com",
         // to: mailList,
-        to: "yoloyolotangzinzam@gmail.com,nd8@narangdesign.com",
+        to: "yoloyolotangzinzam@gmail.com,nd9@narangdesign.com",
         cc: "",
         subject: "NARANG TEST",
         text: "",
