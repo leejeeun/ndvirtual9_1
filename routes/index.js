@@ -43,7 +43,7 @@ router.post("/send", upload.single("ef"), function (req, res, next) {
     let title = req.body.title
     // let today = "first"
     let html = req.body.html
-    let now = Date().now
+    let now = Date.now()
     let mailno = sender + "_" + now
 
     // dir = "E:\\ndvirtual9_1\\routes\\uploads\\통합 문서1.xlsx"
