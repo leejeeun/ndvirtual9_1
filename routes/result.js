@@ -3,7 +3,7 @@ const router = express.Router()
 const mysql = require("mysql2/promise")
 // important
 
-const connection = mysql.createConnection(
+const connection = mysql.createPool(
     {
         host: "211.37.173.172",
         user: "root",
